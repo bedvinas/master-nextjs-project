@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ticketsPath } from "@/paths";
 import { TicketItem } from "@/features/ticket/components/ticket-item";
 import { getTicket } from "@/features/ticket/queries/get-ticket";
+import { notFound } from "next/navigation";
 
 type TicketPageProps = {
   params: Promise<{
@@ -16,18 +17,7 @@ const TicketPage = async ({ params }: TicketPageProps) => {
   const ticket = await getTicket(ticketId);
 
   if (!ticket) {
-    return (
-      <div className="flex flex-1">
-        <Placeholder
-          label="Ticket not found"
-          button={
-            <Button asChild variant="outline">
-              <Link href={ticketsPath()}>Go to Tickets</Link>
-            </Button>
-          }
-        />
-      </div>
-    );
+    notFound();
   }
 
   return (
