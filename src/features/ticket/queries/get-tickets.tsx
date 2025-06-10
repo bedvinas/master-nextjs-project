@@ -6,7 +6,11 @@ export const getTcikets = async (): Promise<Ticket[]> => {
 
   //simulate server delay
   await new Promise((resolve) => setTimeout(resolve, 2000));
-  // simulate data comming from server
+
+  // test error fallback route:
+  // throw new Error("Failed to fetch tickets");
+
+  //simulate data comming from server
   return new Promise((resolve) => {
     resolve(initialTickets);
   });
