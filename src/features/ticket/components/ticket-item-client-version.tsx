@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ticketPath } from "@/paths";
 import Link from "next/link";
@@ -6,6 +8,7 @@ import { Ticket } from "@/generated/prisma";
 import { LucideSquareArrowOutUpRight, LucideTrash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
+import { prisma } from "@/lib/prisma";
 import { deleteTicket } from "../actions/delete-ticket";
 
 type TicketItemProps = {
@@ -24,13 +27,16 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     </Button>
   );
 
-  // how to use server action within server component
+  // How to use server action within a client component
+
+  const handleDeleteTicket = async () => {
+    await deleteTicket(ticket.id);
+  };
+
   const deleteButton = (
-    <form action={deleteTicket.bind(null, ticket.id)}>
-      <Button variant="outline" size="icon">
-        <LucideTrash className="h-4 w-4" />
-      </Button>
-    </form>
+    <Button onClick={handleDeleteTicket} variant="outline" size="icon">
+      <LucideTrash className="h-4 w-4" />
+    </Button>
   );
 
   return (
