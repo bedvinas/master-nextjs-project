@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { LucideSquareArrowOutUpRight, LucideTrash } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent,CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Ticket } from "@/generated/prisma";
 import { ticketPath } from "@/paths";
 import { deleteTicket } from "../actions/delete-ticket";
@@ -18,7 +18,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
 
   const detailButton = (
     <Button asChild variant="outline" size="icon">
-      <Link href={ticketPath(ticket.id)}>
+      <Link prefetch href={ticketPath(ticket.id)}>
         <LucideSquareArrowOutUpRight className="h-4 w-4" />
       </Link>
     </Button>

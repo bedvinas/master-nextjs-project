@@ -5,6 +5,12 @@ import { Heading } from "@/components/heading";
 import { Spinner } from "@/components/spinner";
 import { TicketList } from "@/features/ticket/components/ticket-list";
 
+// force dynamic rendering to avoid full route cache:
+// export const dynamic = "force-dynamic";
+
+// take advantage of ISR - keep static rendering, regenerate after revalidate expires.
+// export const revalidate = 5;
+
 const TicketsPage = () => {
   // Client component version:
   //  - Need to remove async from the component function declaration and add "use client" directive
