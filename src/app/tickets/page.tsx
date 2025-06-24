@@ -4,14 +4,8 @@ import { Suspense } from "react";
 import { Heading } from "@/components/heading";
 import { Spinner } from "@/components/spinner";
 import { TicketList } from "@/features/ticket/components/ticket-list";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { TicketCreateForm } from "@/features/ticket/components/ticket-create-form";
+import { CardCompact } from "@/components/card-compact";
 
 // force dynamic rendering to avoid full route cache:
 // export const dynamic = "force-dynamic";
@@ -35,7 +29,15 @@ const TicketsPage = () => {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
       <Heading title="Tickets" description="All your tickets at one place" />
-      <Card className="w-full max-w-[420px] self-center">
+      {/* Configuration over Composition: */}
+      <CardCompact
+        title="Create Ticket"
+        description="A new ticket will be created"
+        className="w-full max-w-[420px] self-center"
+        content={<TicketCreateForm />}
+      />
+      {/* Composition over Configuration: */}
+      {/* <Card className="w-full max-w-[420px] self-center">
         <CardHeader>
           <CardTitle>Create Ticket</CardTitle>
           <CardDescription>A new ticket will be created</CardDescription>
@@ -43,7 +45,7 @@ const TicketsPage = () => {
         <CardContent>
           <TicketCreateForm />
         </CardContent>
-      </Card>
+      </Card> */}
       <Suspense fallback={<Spinner />}>
         <TicketList />
       </Suspense>
