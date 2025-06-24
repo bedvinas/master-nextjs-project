@@ -4,8 +4,8 @@ import { Suspense } from "react";
 import { Heading } from "@/components/heading";
 import { Spinner } from "@/components/spinner";
 import { TicketList } from "@/features/ticket/components/ticket-list";
-import { TicketCreateForm } from "@/features/ticket/components/ticket-create-form";
 import { CardCompact } from "@/components/card-compact";
+import { TicketUpsertForm } from "@/features/ticket/components/ticket-upsert-form";
 
 // force dynamic rendering to avoid full route cache:
 // export const dynamic = "force-dynamic";
@@ -34,7 +34,7 @@ const TicketsPage = () => {
         title="Create Ticket"
         description="A new ticket will be created"
         className="w-full max-w-[420px] self-center"
-        content={<TicketCreateForm />}
+        content={<TicketUpsertForm />}
       />
       {/* Composition over Configuration: */}
       {/* <Card className="w-full max-w-[420px] self-center">

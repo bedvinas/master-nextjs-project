@@ -1,3 +1,5 @@
+// NOT USED ANYMORE. REPLACED BY UPSERT.
+
 "use server";
 
 import { ticketsPath } from "@/paths";
@@ -11,7 +13,6 @@ export const updateTicket = async (id: string, formData: FormData) => {
     content: formData.get("content"),
   };
 
-  // TODO: Implement update ticket logic with pirsma
   await prisma.ticket.update({
     where: {
       id,
