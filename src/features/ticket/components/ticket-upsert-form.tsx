@@ -9,7 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { upsertTicket } from "@/features/ticket/actions/upsert-ticket";
 import { Ticket } from "@/generated/prisma";
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
+import { toast } from "sonner";
 
 type TicketUpsertFormProps = {
   ticket?: Ticket;
@@ -23,10 +24,10 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
 
   useActionFeedback(actionState, {
     onSuccess: ({ actionState }) => {
-      console.log(actionState.message);
+      if (actionState.message) toast.success(actionState.message);
     },
     onError: ({ actionState }) => {
-      console.log(actionState.message);
+      if (actionState.message) toast.error(actionState.message);
     },
   });
 
@@ -54,7 +55,6 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
       <FieldError actionState={actionState} name="content" />
 
       <SubmitButton label={ticket ? "Edit" : "Create"} />
-      {actionState.message}
     </form>
   );
 };
