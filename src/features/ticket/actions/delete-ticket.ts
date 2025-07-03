@@ -14,6 +14,6 @@ export const deleteTicket = async (id: string) => {
   });
   // remove cache before we redirect back to tickets page (in order too see the updated data)
   revalidatePath(ticketsPath());
-  setCookieByKey("toast", "Ticket Deleted");
+  await setCookieByKey("toast", "Ticket Deleted");
   redirect(ticketsPath());
 };
