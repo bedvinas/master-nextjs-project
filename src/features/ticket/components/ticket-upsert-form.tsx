@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { upsertTicket } from "@/features/ticket/actions/upsert-ticket";
 import { Ticket } from "@/generated/prisma";
+import { fromCent } from "@/utils/currency";
 import { useActionState } from "react";
 import { toast } from "sonner";
 
@@ -61,14 +62,15 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
           <FieldError actionState={actionState} name="deadline" />
         </div>
         <div className="w-1/2 space-y-2">
-          <Label htmlFor="bounty">Bounty ($)</Label>
+          <Label htmlFor="bounty">Bounty (€)</Label>
           <Input
             id="bounty"
             name="bounty"
             type="number"
             step=".01"
             defaultValue={
-              (actionState.payload?.get("bounty") as string) ?? ticket?.bounty
+              (actionState.payload?.get("bounty") as string) ??
+              (ticket?.bounty ? fromCent(ticket?.bounty) : null)
             }
           />
           <FieldError actionState={actionState} name="bounty" />
