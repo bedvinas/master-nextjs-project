@@ -1,8 +1,8 @@
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 import { FlatCompat } from "@eslint/eslintrc";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,8 +11,8 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default [
-  // lat Config global ignores
+const eslintConfig = [
+  // Flat Config global ignores
   {
     ignores: ["src/generated/*", "node_modules", ".next", "dist"],
   },
@@ -46,6 +46,9 @@ export default [
           argsIgnorePattern: "^_",
         },
       ],
+      "@typescript-eslint/no-unused-vars": "off"
     },
   },
 ];
+
+export default eslintConfig;
