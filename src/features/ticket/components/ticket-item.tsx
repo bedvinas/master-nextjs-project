@@ -3,7 +3,6 @@ import {
   LucideMoreVertical,
   LucidePencil,
   LucideSquareArrowOutUpRight,
-  LucideTrash,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,9 +15,8 @@ import {
 } from "@/components/ui/card";
 import { Ticket } from "@/generated/prisma";
 import { ticketEditPath, ticketPath } from "@/paths";
-import { deleteTicket } from "../actions/delete-ticket";
-import { TICKET_ICONS } from "../constants";
 import { toCurrencyFromCent } from "@/utils/currency";
+import { TICKET_ICONS } from "../constants";
 import { TicketMoreMenu } from "./ticket-more-menu";
 
 type TicketItemProps = {

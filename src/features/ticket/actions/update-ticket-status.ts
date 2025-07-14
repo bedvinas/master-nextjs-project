@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import {
   fromErrorToActionState,
   toActionState,
@@ -7,7 +8,6 @@ import {
 import { TicketStatus } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { ticketsPath } from "@/paths";
-import { revalidatePath } from "next/cache";
 
 export const updateTicketStatus = async (id: string, status: TicketStatus) => {
   try {

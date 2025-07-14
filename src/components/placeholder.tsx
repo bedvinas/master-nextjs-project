@@ -3,8 +3,8 @@ import { cloneElement } from "react";
 
 type PlaceholderProps = {
   label: string;
-  icon?: React.ReactElement<any>;
-  button?: React.ReactElement<any>;
+  icon?: React.ReactElement<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  button?: React.ReactElement<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 const Placeholder = ({

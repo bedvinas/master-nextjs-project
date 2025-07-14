@@ -1,7 +1,8 @@
 "use client";
 
-import { Ticket, TicketStatus } from "@/generated/prisma";
 import { LucideTrash } from "lucide-react";
+import { toast } from "sonner";
+import { useConfirmDialog } from "@/components/form/confirm-dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,11 +13,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { TICKET_STATUS_LABELS } from "../constants";
-import { updateTicketStatus } from "../actions/update-ticket-status";
-import { toast } from "sonner";
-import { useConfirmDialog } from "@/components/form/confirm-dialog";
+import { Ticket, TicketStatus } from "@/generated/prisma";
 import { deleteTicket } from "../actions/delete-ticket";
+import { updateTicketStatus } from "../actions/update-ticket-status";
+import { TICKET_STATUS_LABELS } from "../constants";
 
 type TicketMoreMenuProps = {
   ticket: Ticket;

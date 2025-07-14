@@ -1,9 +1,9 @@
 "use client";
 
-import { consumeCookieByKey } from "@/actions/cookies";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { usePathname } from "next/navigation";
+import { consumeCookieByKey } from "@/actions/cookies";
 
 const RedirectToast = () => {
   // Alternatively instead of using pathname as dependency in useEffect, we can use template.tsx which rerenders on navigation by default
