@@ -7,7 +7,9 @@ import z from "zod";
 import {
   ActionState,
   fromErrorToActionState,
+  toActionState,
 } from "@/components/form/utils/to-action-state";
+import { Prisma } from "@/generated/prisma";
 import { lucia } from "@/lib/lucia";
 import { prisma } from "@/lib/prisma";
 import { ticketsPath } from "@/paths";
@@ -61,6 +63,16 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
       sessionCookie.attributes
     );
   } catch (error) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return toActionState(
+        "ERROR",
+        "Either email or username is already in use",
+        formData
+      );
+    }
     return fromErrorToActionState(error, formData);
   }
 
